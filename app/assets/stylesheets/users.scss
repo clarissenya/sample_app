@@ -1,12 +1,9 @@
-$light-gray: #777;
-@mixin box_sizing {
-  -moz-box-sizing:    border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
-}
+
 /* siderbar */
 
 aside {
+  background-color:  #ffffff;
+  padding: 10px;
   section.user_info {
     margin-top: 20px;
   }
@@ -122,8 +119,9 @@ input {
   list-style: none;
   margin: 0;
   li {
+    background: #fff;
     overflow: auto;
-    padding: 10px 0;
+    padding: 10px 10px;
     border-bottom: 1px solid $gray-lighter;
   }
 

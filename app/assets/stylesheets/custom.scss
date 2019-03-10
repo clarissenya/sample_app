@@ -3,6 +3,7 @@
 
 body {
   padding-top: 60px;
+  background-color:  rgb(245, 248, 250);
 }
 
 section {
@@ -44,6 +45,11 @@ h2 {
   color: $light-gray;
 }
 
+h3 {
+  background-color:#fff;
+  margin: 0;
+  padding: 15px 10px;
+}
 p {
   font-size: 1.1em;
   line-height: 1.7em;

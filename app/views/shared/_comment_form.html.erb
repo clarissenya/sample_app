@@ -1,0 +1,8 @@
+<%= form_for([@micropost, current_user.comments.build]) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div><%= hidden_field_tag :micropost_id, @micropost.id %></div>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Compose new comment..." %>
+  </div>
+  <%= f.submit "Publish", class: "btn btn-primary" %>
+<% end %>

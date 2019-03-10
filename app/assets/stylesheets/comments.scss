@@ -1,14 +1,40 @@
-/* microposts */
+/* comments*/
 
-.microposts { 
-  background-color:#fff;
-  list-style: none;
+.comment_form {
+	margin: 15px 0;
+	background-color:#fff;
+	input, textarea, select, .uneditable-input {
+	border: 1px solid #bbb;
+	width: 100%;
+	margin: 0;
+	@include box_sizing;
+	}
+	
+}
+
+
+.login_sinup {
+	background-color: #fff;
+	margin:15px 0;
+	padding: 30px 0;
+	text-align: center;
+	font-size: 20px;
+}
+
+
+.comments {
+	background-color:#fff;
   padding:  10px;
+  ol {
+  list-style: none;
+  padding: 0;
+  }
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
   }
-  .user {
+	
+	.user {
     margin-top: 5em;
     padding-top: 0;
   }
@@ -30,22 +56,5 @@
     float: left;
     margin-right: 10px;
     margin-top: 5px;
-  }
-  .link {
-    margin-left: 60px;
-  }
-}
-
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
-  }
-}
-
-span.picture {
-  margin-top: 10px;
-  input {
-    border: 0;
   }
 }
