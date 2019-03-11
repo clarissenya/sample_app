@@ -29,13 +29,18 @@ aside {
   }
 }
 
+
 .avatar {
   float: left;
   margin-right: 10px;
   border-radius: 50%;
 }
 
-
+.top-avatar {
+  clear:left;
+  margin: 0px;
+  
+}
 
 .stats {
   overflow: auto;
