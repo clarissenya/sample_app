@@ -1,10 +1,16 @@
 module UsersHelper
 
-  # 返回指定用户的 Gravatar
-  def gravatar_for(user, options = { size: 80 })
-    gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
+  def avatar_for(user, options = { size: 80 })
     size = options[:size]
-    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
-    image_tag(gravatar_url, alt: user.name, class: "gravatar")
+    style = options[:style]
+    if user.avatar?
+      if size <= 80
+        image_tag user.avatar.url(:thumb), width: size, height: size, alt: user.name, class: 'avatar', style: style
+      else
+        image_tag user.avatar.url, width: size, height: size, alt: user.name, class: 'avatar', style: style
+      end
+    else
+      image_tag 'default-avatar.svg', width: size, height: size, alt: 'avatar image', class: 'avatar', style: style
+    end
   end
 end

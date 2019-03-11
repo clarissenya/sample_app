@@ -68,7 +68,7 @@ class UsersController < ApplicationController
 
   	def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :description,:avatar)
     end
 
     # 前置过滤器

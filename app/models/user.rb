@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed                                
   has_many :followers, through: :passive_relationships, source: :follower
   attr_accessor :remember_token, :activation_token, :reset_token
+  mount_uploader :avatar, AvatarUploader
   before_save   :downcase_email
   before_create :create_activation_digest
 
@@ -21,6 +22,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password                
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validate  :avatar_size
 
   # 返回指定字符串的哈希摘要
   def User.digest(string)
@@ -114,5 +116,13 @@ class User < ApplicationRecord
       self.activation_digest = User.digest(activation_token)
     end
 
+
+
+    # 验证上传的图像大小
+    def avatar_size
+      if avatar.size > 5.megabytes
+        errors.add(:avatar, "should be less than 5MB")
+      end
+    end
 end
 

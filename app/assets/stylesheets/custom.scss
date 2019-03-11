@@ -6,6 +6,12 @@ body {
   background-color:  rgb(245, 248, 250);
 }
 
+text { 
+word-break:break-all; 
+word-wrap:break-word;
+white-space:pre-wrap;
+} 
+
 section {
   overflow: auto;
 }
