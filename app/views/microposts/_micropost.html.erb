@@ -12,5 +12,15 @@
                                        data: { confirm: "You sure?" } %>
     <% end %>
   </span>
-  <div class="link"><%= link_to "view more", micropost %> </div>
+
+  <div>
+    <span class="link"><%= link_to  micropost do%> 
+        <%= fa_icon "comments" %>
+    <% end %>
+    <%= micropost.comments.count %>
+    </span>
+    <span class="likes">
+        <%= render partial: 'microposts/likes', locals: { micropost: micropost } %>
+    </span>
+  </div>
 </li>

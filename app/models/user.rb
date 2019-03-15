@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  has_many :likes, dependent: :destroy
+  has_many :liked_microposts, through: :likes, source: :likeable, source_type: "Micropost"
+
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
                                   dependent:   :destroy
@@ -9,6 +13,7 @@ class User < ApplicationRecord
                                    dependent:   :destroy                               
   has_many :following, through: :active_relationships, source: :followed                                
   has_many :followers, through: :passive_relationships, source: :follower
+
   attr_accessor :remember_token, :activation_token, :reset_token
   mount_uploader :avatar, AvatarUploader
   before_save   :downcase_email
@@ -101,6 +106,19 @@ class User < ApplicationRecord
    # 如果当前用户关注了指定的用户，返回 true
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  # 判断是否已喜欢
+  def like?(micropost)
+    liked_microposts.include?(micropost)
+  end
+  # 点赞
+  def add_like(micropost)
+    liked_microposts << micropost
+  end
+  #取消赞
+  def remove_like(micropost)
+    liked_microposts.delete(micropost)
   end
 
   private

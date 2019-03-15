@@ -1,0 +1,12 @@
+<span id="likes-<%= micropost.id %>">
+	<% if current_user.like?(micropost) %>
+		<%= link_to [micropost, current_user.likes.find_by(likeable_id: micropost.id)], method: :delete, remote: true do %>
+		<%= fa_icon "heart" %>
+		<% end %>
+	<% else %>
+		<%= link_to [micropost, current_user.likes.build], method: :post, remote: true do %>
+			<%= fa_icon "heart-o" %>
+		<% end %>
+	<% end %>
+	<%= micropost.likes.count %>
+</span>

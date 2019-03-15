@@ -3,9 +3,9 @@
 .microposts { 
   background-color: #fff;
   list-style: none;
-  padding:  10px;
+  padding: 0 20px;
   li {
-    padding: 10px 0;
+    padding: 15px 0;
     border-top: 1px solid #e8e8e8;
   }
   .user {
@@ -47,5 +47,29 @@ span.picture {
   margin-top: 10px;
   input {
     border: 0;
+  }
+}
+
+
+.microposts-show {
+  padding: 20px;
+}
+
+.micropost_form {
+input{  
+    width: 60px;
+    float: right;
+    }
+label{
+  margin: 0;
+  .file{
+    display: none;
+  }
+  .fa-picture-o {
+    color: #008B8B;
+  &:hover {
+      color: #4B0082;
+      }
+    }
   }
 }

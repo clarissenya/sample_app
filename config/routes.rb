@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'password_resets/new'
-
-  get 'password_resets/edit'
 
   root 'static_pages#home'
   get  '/help',    to: 'static_pages#help'
@@ -17,9 +14,12 @@ Rails.application.routes.draw do
     end
   end
   resources :microposts,          only: [:create, :destroy, :show] do 
+    resources :likes,             only: [:create, :destroy]   
     resources :comments,          only: [:create, :destroy]
   end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :relationships,       only: [:create, :destroy]
+
+  
 end

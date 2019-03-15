@@ -8,7 +8,8 @@
 
       <div class="user-avatar-edit">
         <label class="change-avatar" id="change-avatar" style="background-image: url('<%= @user.avatar.url %>')">
-         <span class="file"><%= f.file_field :avatar %></span>             
+         <span class="file"><%= f.file_field :avatar %></span>
+         <%= fa_icon "camera" %>             
         </label>
       </div>
 
