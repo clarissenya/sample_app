@@ -6,7 +6,7 @@
                 <h4 class="modal-title text-center" id="myModalLabel">write a new micropost</h4>
             </div>
             <div class="modal-body micropost_form">
-                <%= form_for(@micropost) do |f| %>
+                <%= form_for(current_user.microposts.build) do |f| %>
                   <%= render 'shared/error_messages', object: f.object %>
                   <div class="field">
                     <%= f.text_area :content, placeholder: "Compose new micropost..." %>

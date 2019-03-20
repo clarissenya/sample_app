@@ -36,12 +36,7 @@
   }
 }
 
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
-  }
-}
+
 
 span.picture {
   margin-top: 10px;
@@ -56,6 +51,10 @@ span.picture {
 }
 
 .micropost_form {
+textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
 input{  
     width: 60px;
     float: right;

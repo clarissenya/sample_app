@@ -1,11 +1,13 @@
 <header class="navbar navbar-fixed-top navbar-default">
   <div class="container">
     <%= link_to "sample app", root_path, id: "logo" %>
+  
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Help", help_path %></li>
         <% if logged_in? %>
+          <% if current_user.admin? %>
+            <li><%= link_to "Background", admin_users_path %></li>
+          <% end %>
           <li><%= link_to "Users", users_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -38,5 +40,38 @@
 
 
 
+<div class="modal fade" id="micropost_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title text-center" id="myModalLabel">write a new micropost</h4>
+            </div>
+            <div class="modal-body micropost_form">
+                <%= form_for(Micropost.new) do |f| %>
+                  <%= render 'shared/error_messages', object: f.object %>
+                  <div class="field">
+                    <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+                  </div>    
+                    <label class="picture">
+                    <span class="file"><%= f.file_field :picture, 
+                    accept: 'image/jpeg,image/gif,image/png' %></span>
+                    <%= fa_icon "picture-o", class: "fa-2x" %>
+                    </label>
+                   <%= f.submit "Post", class: "btn btn-primary" %>
+                <% end %>
+            </div>
+            
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 
+<script type="text/javascript">
+  $('#micropost_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>
 
