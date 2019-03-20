@@ -11,4 +11,7 @@
                                        data: { confirm: "You sure?" } %>
     <% end %>
   </span>
+  <span class="likes">
+        <%= render partial: 'comments/likes', locals: { comment: comment } %>
+  </span>
 </li>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190315110513) do
+ActiveRecord::Schema.define(version: 20190320042929) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20190315110513) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable_type_and_likeable_id"
+    t.index ["user_id", "likeable_id"], name: "index_likes_on_user_id_and_likeable_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -67,6 +68,8 @@ ActiveRecord::Schema.define(version: 20190315110513) do
     t.datetime "reset_sent_at"
     t.string "avatar"
     t.text "description"
+    t.string "user_type"
+    t.string "type"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

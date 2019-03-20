@@ -63,12 +63,23 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def likes
+    @user = User.find(params[:id])
+    @microposts = @user.liked_microposts.paginate(page: params[:page])
+    render 'show'
+  end
 
+  def media
+    @user = User.find(params[:id])
+    @microposts = @user.media.paginate(page: params[:page])
+    render 'show'
+  end
+  
   private
 
   	def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation, :description,:avatar)
+                                   :password_confirmation, :description, :avatar)
     end
 
     # 前置过滤器
@@ -83,6 +94,6 @@ class UsersController < ApplicationController
 
     # 确保是管理员
     def admin_user
-      redirect_to(root_url) unless current_user.admin?
+      redirect_to(root_url) unless current_user.user_type == "Admin"
     end
 end

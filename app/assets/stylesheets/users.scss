@@ -36,11 +36,7 @@ aside {
   border-radius: 50%;
 }
 
-.top-avatar {
-  clear:left;
-  margin: 0px;
-  
-}
+
 
 .stats {
   overflow: auto;
@@ -172,4 +168,26 @@ input {
     border-bottom: 1px solid $gray-lighter;
   }
 
+}
+
+
+
+.ProfileHeading {
+  padding:10px;
+  background: #fff;
+  display:block;
+  ul li a:active {
+  color: black;
+  }
+}
+
+
+
+li.top-avatar a {
+  positon:absolution;
+  padding:0;
+  img {
+    margin:10px;
+
+  }
 }

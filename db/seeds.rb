@@ -1,19 +1,20 @@
-User.create!(name:  "Example User",
-             email: "example@railstutorial.org",
+User.create!(name:  "Admin",
+             email: "example@example.com",
              password:              "foobar",
              password_confirmation: "foobar",
-             admin:     true,
+             user_type:   "Admin",
              activated: true,
              activated_at: Time.zone.now)
 
 99.times do |n|
   name  = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
+  email = "example-#{n+1}@example.com"
   password = "password"
   User.create!(name:  name,
               email: email,
               password:              password,
               password_confirmation: password,
+              user_type:   "User",
               activated: true,
               activated_at: Time.zone.now)
 end
@@ -41,3 +42,9 @@ followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
+#likes
+users = User.order(:created_at).take(6)
+1.times do
+  micropost = User.first.microposts.find_by(content: "hello world")
+  users.each { |user| user.add_like(micropost)}
+end

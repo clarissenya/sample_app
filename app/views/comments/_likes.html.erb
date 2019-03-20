@@ -1,0 +1,12 @@
+<span id="likes-<%= comment.id %>">
+	<% if current_user.liked?(comment) %>
+		<%= link_to  api_comment_likes_path(comment), method: :delete, remote: true do %>
+		<%= fa_icon "heart" %>
+		<% end %>
+	<% else %>
+		<%= link_to  api_comment_likes_path(comment), method: :post, remote: true do %>
+			<%= fa_icon "heart-o" %>
+		<% end %>
+	<% end %>
+	<%= comment.likes.count %>
+</span>

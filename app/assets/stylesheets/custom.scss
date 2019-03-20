@@ -6,7 +6,9 @@ body {
   
 }
 
-
+.btn{
+  border-radius: 100px;
+}
 
 text { 
 word-break:break-all; 
@@ -28,10 +30,10 @@ textarea {
   margin-bottom: 10px;
   }
 }
-.title {
-  padding: 15px 20px;
-  background: #fff;
-  display:block;
+
+.home_title {
+  height: 62px;
+  padding: 20px;
 }
 
 

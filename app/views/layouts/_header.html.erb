@@ -20,7 +20,12 @@
               </li>
             </ul>
           </li>
-          <li><%= link_to avatar_for(current_user, size: 25), current_user, class: "top-avatar" %></li>
+          <li class="top-avatar">
+            <%= link_to avatar_for(current_user, size: 30), current_user %>
+          </li>
+          <li>
+            <button class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#micropost_form">Post</button>
+          </li>
         <% else %>
           <li><%= link_to "Log in", login_path %></li>
         <% end %>
@@ -28,3 +33,10 @@
     </nav>
   </div>
 </header>
+
+
+
+
+
+
+

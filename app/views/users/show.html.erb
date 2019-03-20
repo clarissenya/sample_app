@@ -16,7 +16,13 @@
 	  <div class="col-md-8">
 	  <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
-      <span class="title"><h3>Microposts (<%= @user.microposts.count %>)</h3></span>
+      <span class="ProfileHeading">
+      	<ul class="nav nav-pills">
+				  <li><a href="<%= user_path(@user) %>">Mypage</a></li>
+				  <li><a href="<%= likes_user_path(@user) %>">Likes</a></li>
+				  <li><a href="<%= media_user_path(@user) %>">Media</a></li>
+				</ul>
+      </span>
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
@@ -24,3 +30,5 @@
     <% end %>
   </div>
 </div>
+
+

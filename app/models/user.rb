@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_many :likes, dependent: :destroy
   has_many :liked_microposts, through: :likes, source: :likeable, source_type: "Micropost"
+  has_many :liked_comments, through: :likes, source: :likeable, source_type: "Comment"
 
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
@@ -109,17 +110,36 @@ class User < ApplicationRecord
   end
 
   # 判断是否已喜欢
-  def like?(micropost)
-    liked_microposts.include?(micropost)
+  def liked?(likeable_obj)
+    send("liked_#{downcase_class_name(likeable_obj)}s").include?(likeable_obj)
   end
+
   # 点赞
-  def add_like(micropost)
-    liked_microposts << micropost
+  def add_like(likeable_obj)
+    send("liked_#{downcase_class_name(likeable_obj)}s") << likeable_obj
   end
+
   #取消赞
-  def remove_like(micropost)
-    liked_microposts.delete(micropost)
+  def remove_like(likeable_obj)
+    send("liked_#{downcase_class_name(likeable_obj)}s").delete(likeable_obj)
   end
+
+  # 判断是否是管理员
+  def admin?
+    self.user_type == "Admin"
+  end
+
+  # 返回有图片的微博
+  def media
+    Micropost.where("picture is not null AND user_id = ?", id)
+  end
+
+  # 随机返回用户
+  def User.recommend
+    ids = User.pluck(:id).sample(3)
+    User.where(id: ids)
+  end
+    
 
   private
 
@@ -128,13 +148,16 @@ class User < ApplicationRecord
       self.email = email.downcase
     end
 
+    # 小写类名
+    def downcase_class_name(obj)
+      obj.class.to_s.downcase
+    end
+
      # 创建并赋值激活令牌和摘要
     def create_activation_digest
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)
     end
-
-
 
     # 验证上传的图像大小
     def avatar_size

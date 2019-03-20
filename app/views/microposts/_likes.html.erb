@@ -1,10 +1,10 @@
 <span id="likes-<%= micropost.id %>">
-	<% if current_user.like?(micropost) %>
-		<%= link_to [micropost, current_user.likes.find_by(likeable_id: micropost.id)], method: :delete, remote: true do %>
+	<% if current_user.liked?(micropost) %>
+		<%= link_to api_micropost_likes_path(micropost), method: :delete, remote: true do %>
 		<%= fa_icon "heart" %>
 		<% end %>
 	<% else %>
-		<%= link_to [micropost, current_user.likes.build], method: :post, remote: true do %>
+		<%= link_to api_micropost_likes_path(micropost), method: :post, remote: true do %>
 			<%= fa_icon "heart-o" %>
 		<% end %>
 	<% end %>
