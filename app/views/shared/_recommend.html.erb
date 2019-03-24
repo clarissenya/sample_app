@@ -1,0 +1,17 @@
+<% if logged_in? %>
+<div class="recommend-users" >
+	<h2>Recommend Users</h2>
+	<span class="pull-right"><%= link_to "VIEW MORE", recommend_path %></span>
+	<ul>
+	<% @users.each do |user| %>
+	<li>
+		<%= link_to avatar_for(user, size: 30), user %>
+		<span><%= user.name %></span>
+		<span id="follow_form-<%= user.id %>">
+		<%= render partial: 'users/follow', locals: { user: user }  %>
+		</span>
+	</li>
+	<% end %>
+	</ul>
+</div>
+<% end %>

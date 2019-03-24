@@ -1,8 +1,29 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                :integer          not null, primary key
+#  name              :string
+#  email             :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  password_digest   :string
+#  remember_digest   :string
+#  admin             :boolean          default(FALSE)
+#  activation_digest :string
+#  activated         :boolean          default(FALSE)
+#  activated_at      :datetime
+#  reset_digest      :string
+#  reset_sent_at     :datetime
+#  avatar            :string
+#  description       :text
+#
+
 michael:
   name: Michael Example
   email: michael@example.com
   password_digest: <%= User.digest('password') %>
-  user_type: "Admin"
+  admin: true
   activated: true
   activated_at: <%= Time.zone.now %>
 
@@ -10,7 +31,6 @@ archer:
   name: Sterling Archer
   email: duchess@example.gov
   password_digest: <%= User.digest('password') %>
-  user_type: "user"
   activated: true
   activated_at: <%= Time.zone.now %>
 

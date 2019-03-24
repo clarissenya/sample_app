@@ -1,0 +1,20 @@
+<% if @query_string.blank? %>
+  <h2 class="search-info-title">
+  搜索信息不能为空，请输入关键字搜索</h2>
+<% elsif @users.blank?%> 
+  <h2 class="search-info-title">
+  没有搜索到相关信息</h2>
+<% else %>
+  <ul class = "users">       
+    <% @users.each do |user| %>
+    <li> 
+      <%= avatar_for user, size: 50 %>       
+      <%= link_to(render_highlight_content(user.name,@query_string),
+                                             user_path(user)) %>
+    </li>                                                
+    <% end %>
+  </ul>
+  <%= will_paginate @users %>
+<% end %>
+    
+

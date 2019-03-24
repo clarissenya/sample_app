@@ -9,4 +9,9 @@ module ApplicationHelper
   		page_title + " | " + base_title
   	end
   end
+  # 高亮
+  def render_highlight_content(group,query_string)
+    excerpt_cont = excerpt(group, query_string, radius: 500)
+    highlight(excerpt_cont, query_string)
+	end
 end

@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                :integer          not null, primary key
+#  name              :string
+#  email             :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  password_digest   :string
+#  remember_digest   :string
+#  admin             :boolean          default(FALSE)
+#  activation_digest :string
+#  activated         :boolean          default(FALSE)
+#  activated_at      :datetime
+#  reset_digest      :string
+#  reset_sent_at     :datetime
+#  avatar            :string
+#  description       :text
+#
+
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -124,10 +145,7 @@ class User < ApplicationRecord
     send("liked_#{downcase_class_name(likeable_obj)}s").delete(likeable_obj)
   end
 
-  # 判断是否是管理员
-  def admin?
-    self.user_type == "Admin"
-  end
+  
 
   # 返回有图片的微博
   def media
@@ -135,9 +153,8 @@ class User < ApplicationRecord
   end
 
   # 随机返回用户
-  def User.recommend
-    ids = User.pluck(:id).sample(3)
-    User.where(id: ids)
+  def people_to_follow(number)
+    User.where.not(id: following_ids + [self.id]).limit(number).order("RANDOM()")
   end
     
 

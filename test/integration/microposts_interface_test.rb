@@ -29,8 +29,6 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_difference 'Micropost.count', -1 do
       delete micropost_path(first_micropost)
     end
-    # 访问另一个用户的资料页面（没有删除链接）
-    get user_path(users(:archer))
-    assert_select 'a', text: 'delete', count: 0
+    
   end
 end

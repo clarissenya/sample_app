@@ -93,8 +93,8 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless current_user?(@user)
     end
 
-    # 确保是管理员
+     # 确保是管理员
     def admin_user
-      redirect_to(root_url) unless current_user.user_type == "Admin"
+      redirect_to(root_url) unless current_user.admin?
     end
 end

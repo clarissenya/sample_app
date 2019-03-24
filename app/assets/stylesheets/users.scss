@@ -184,10 +184,33 @@ input {
 
 
 li.top-avatar a {
-  positon:absolution;
-  padding:0;
-  img {
-    margin:10px;
+  overflow: auto;
+  padding: 10px;
 
+}
+
+
+.recommend-users {
+padding-right: 10px;
+margin-top:60px;
+  ul {
+  clear:both;
+  margin: 0;
+  padding:0;
+  list-style: none;  
+    li {   
+      background: #fff;
+      overflow: auto;
+      padding: 10px 10px;
+      border-bottom: 1px solid $gray-lighter;
+      form {
+       display :inline;
+      }
+      input {
+      float: right;
+      width: auto;      
+
+      }
+    }
   }
 }

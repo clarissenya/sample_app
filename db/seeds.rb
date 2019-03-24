@@ -2,7 +2,7 @@ User.create!(name:  "Admin",
              email: "example@example.com",
              password:              "foobar",
              password_confirmation: "foobar",
-             user_type:   "Admin",
+             admin:   true,
              activated: true,
              activated_at: Time.zone.now)
 
@@ -14,7 +14,6 @@ User.create!(name:  "Admin",
               email: email,
               password:              password,
               password_confirmation: password,
-              user_type:   "User",
               activated: true,
               activated_at: Time.zone.now)
 end
@@ -48,3 +47,6 @@ users = User.order(:created_at).take(6)
   micropost = User.first.microposts.find_by(content: "hello world")
   users.each { |user| user.add_like(micropost)}
 end
+
+#active_admin
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
